@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * _strdup - a pointer to the result of duplication.
- *           
+ * my_strdup - a pointer to the result of duplication.
+ *
  * @s:  pointer to the string to be copied
  *
  * Return: a pointer ti new new char
@@ -26,14 +26,14 @@ char *my_strdup(char *s)
 	return (str);
 }
 /**
- * _strcmp - compare two strings.
- * 
+ * my_strcmp - compare two strings.
+ *
  * @s1: first string
  * @s2: second string
- * 
- * Return
- * 
-*/
+ *
+ * Return: diff
+ */
+
 int my_strcmp(char *s1, char *s2)
 {
 	while ((*s1 != '\0' && *s2 != '\0') && *s1 == *s2)
@@ -122,5 +122,3 @@ char *_strcpy(char *dest, char *src)
 	dest[j] = '\0';
 	return (dest);
 }
-
-
