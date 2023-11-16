@@ -9,11 +9,13 @@
  * Return: 0.
  */
 
-int main(int ac, char **av)
+char **envp;
+
+int main(int ac, char **av, char **envp)
 {
 	char *line;
 	char **command_line = NULL;
-	int stat = 0, index = 0;
+	int status = 0, index = 0;
 	(void)ac;
 
 	while (1)
@@ -23,12 +25,17 @@ int main(int ac, char **av)
 		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
-			return (stat);
+			free(line);
+			return (status);
 		}
 		index++;
 		command_line = spliter(line);
 		if (!command_line)
+		{
+			free(line);
 			continue;
-		stat = my_execute(command_line, av, index);
+		}
+		status = my_execute(command_line, av, index, envp);
+		free(line);
 	}
 }

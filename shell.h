@@ -12,7 +12,8 @@
 
 #define SEP " \t\n"
 
-extern char **environ;
+extern char **envp;
+
 
 char *readline(void);
 char **spliter(char *);
@@ -30,7 +31,7 @@ int _strlen(char *s);
 const char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 
-int my_execute(char **command_line, char **av, int index);
+int my_execute(char **command_line, char **av, int index, char **envp);
 void FreeArray(char **array);
 
 

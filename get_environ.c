@@ -15,9 +15,9 @@ char *get_environ(char *var)
 	char *temp, *cke, *value;
 	char *envo;
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; envp[i]; i++)
 	{
-		temp = my_strdup(environ[i]);
+		temp = my_strdup(envp[i]);
 		cke = strtok(temp, "=");
 		if (my_strcmp(cke, var) == 0)
 		{

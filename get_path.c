@@ -35,15 +35,15 @@ char *get_path(char *line)
 			_strcpy(cmd, dir);
 			_strcat(cmd, "/");
 			_strcat(cmd, line);
-			if (stat(cmd, &st) == 0)
+			if (stat(cmd, &st) == 0 && S_ISREG(st.st_mode))
 			{
 				free(pathEnv);
 				return (cmd);
 			}
 			free(cmd);
 			cmd = NULL;
-			dir = strtok(NULL, ":");
 		}
+		dir = strtok(NULL, ":");
 	}
 	free(pathEnv);
 	return (NULL);

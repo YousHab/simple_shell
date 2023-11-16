@@ -10,11 +10,10 @@
  * Return: the status.
  */
 
-int my_execute(char **command_line, char **av, int index)
+int my_execute(char **command_line, char **av, int index, char **envp)
 {
 	int status;
 	char *cmd;
-	char **environ;
 	pid_t child;
 
 	cmd = get_path(command_line[0]);
@@ -27,11 +26,12 @@ int my_execute(char **command_line, char **av, int index)
 	child = fork();
 	if (child == 0)
 	{
-		if (execve(command_line[0], command_line, environ) == -1)
+		if (execve(command_line[0], command_line, envp) == -1)
 		{
 			free(cmd);
 			cmd = NULL;
 			FreeArray(command_line);
+			exit(127);
 		}
 	}
 	else
