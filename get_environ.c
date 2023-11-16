@@ -13,12 +13,13 @@ char *get_environ(char *var)
 {
 	int i = 0;
 	char *temp, *cke, *value;
+	char *envo;
 
-	for (i = 0; env[i]; i++)
+	for (i = 0; environ[i]; i++)
 	{
-		temp = my_strdup(env[i]);
+		temp = my_strdup(environ[i]);
 		cke = strtok(temp, "=");
-		if (my_strcmp(cke, var))
+		if (my_strcmp(cke, var) == 0)
 		{
 			value = strtok(NULL, "\n");
 			envo = my_strdup(value);

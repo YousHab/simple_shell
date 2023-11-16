@@ -12,10 +12,10 @@
 
 int my_execute(char **command_line, char **av, int index)
 {
-	int stat;
-	char **env;
+	int status;
 	char *cmd;
-	pit_t child;
+	char **environ;
+	pid_t child;
 
 	cmd = get_path(command_line[0]);
 	if (!cmd)
@@ -27,7 +27,7 @@ int my_execute(char **command_line, char **av, int index)
 	child = fork();
 	if (child == 0)
 	{
-		if (execve(command_line[0], command_line, env) == -1)
+		if (execve(command_line[0], command_line, environ) == -1)
 		{
 			free(cmd);
 			cmd = NULL;
@@ -36,10 +36,10 @@ int my_execute(char **command_line, char **av, int index)
 	}
 	else
 	{
-		waitpid(child, &stat, 0);
+		waitpid(child, &status, 0);
 		FreeArray(command_line);
 		free(cmd);
 		cmd = NULL;
 	}
-	return (WEXITSTATUS(stat));
+	return (WEXITSTATUS(status));
 }

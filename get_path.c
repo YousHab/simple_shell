@@ -1,4 +1,4 @@
-#include "shell"
+#include "shell.h"
 
 /**
  * get_path - a function that return the path.
@@ -11,14 +11,14 @@
 char *get_path(char *line)
 {
 	char *pathEnv, *cmd, *dir;
-	struct stat stat;
+	struct stat st;
 	int j;
 
 	for (j = 0; line[j]; j++)
 	{
-		if (line[j] == "/")
+		if (line[j] == '/')
 		{
-			if (stat(line, &stat) == 0)
+			if (stat(line, &st) == 0)
 				return (my_strdup(line));
 			return (NULL);
 		}
@@ -35,7 +35,7 @@ char *get_path(char *line)
 			_strcpy(cmd, dir);
 			_strcat(cmd, "/");
 			_strcat(cmd, line);
-			if (stat(cmd, &stat) == 0)
+			if (stat(cmd, &st) == 0)
 			{
 				free(pathEnv);
 				return (cmd);

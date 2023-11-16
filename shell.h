@@ -12,7 +12,7 @@
 
 #define SEP " \t\n"
 
-extern char **env;
+extern char **environ;
 
 char *readline(void);
 char **spliter(char *);

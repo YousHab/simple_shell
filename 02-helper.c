@@ -48,7 +48,7 @@ char *_itoa(int n)
 		}
 	}
 
-	buff[i] = "\0";
+	buff[i] = '\0';
 	rev_str(buff, i);
 
 	return (my_strdup(buff));
