@@ -22,7 +22,7 @@ int my_execute(char **command_line, char **av)
 		{
 			perror(av[0]);
 			FreeArray(command_line);
-			exit(0);
+			exit(100);
 		}
 	}
 	else

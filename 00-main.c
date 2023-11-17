@@ -31,10 +31,6 @@ int main(int ac, char **av)
 		{
 			continue;
 		}
-		printf("%s\n", line);
-		free(line);
-
 		status = my_execute(command_line, av);
-		free(line);
 	}
 }

@@ -22,10 +22,11 @@ char **spliter(char *line)
 	token = strtok(temp, SEP);
 	if (!token)
 	{
-		free(temp);
-		temp = NULL;
 		free(line);
 		line = NULL;
+		free(temp);
+		temp = NULL;
+		return (NULL);
 	}
 	while (token)
 	{
@@ -38,13 +39,15 @@ char **spliter(char *line)
 	if (!tokens)
 	{
 		free(line);
+		line = NULL;
 		return (NULL);
 	}
 	token = strtok(line, SEP);
 	while (token)
 	{
-		tokens[i++] = token;
+		tokens[i] = my_strdup(token);
 		token = strtok(NULL, SEP);
+		i++;
 	}
 	free(line);
 	line = NULL;
