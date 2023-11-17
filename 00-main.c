@@ -9,7 +9,6 @@
  * Return: 0.
  */
 
-char **envp;
 
 int main(int ac, char **av)
 {
