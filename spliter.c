@@ -22,10 +22,8 @@ char **spliter(char *line)
 	token = strtok(temp, SEP);
 	if (!token)
 	{
-		free(line);
-		line = NULL;
-		free(temp);
-		temp = NULL;
+		free(line), line = NULL;
+		free(temp), temp = NULL;
 		return (NULL);
 	}
 	while (token)
@@ -38,8 +36,7 @@ char **spliter(char *line)
 	tokens = malloc(sizeof(char *) * (count + 1));
 	if (!tokens)
 	{
-		free(line);
-		line = NULL;
+		free(line), line = NULL;
 		return (NULL);
 	}
 	token = strtok(line, SEP);
@@ -49,8 +46,7 @@ char **spliter(char *line)
 		token = strtok(NULL, SEP);
 		i++;
 	}
-	free(line);
-	line = NULL;
+	free(line), line = NULL;
 	tokens[i] = NULL;
 	return (tokens);
 }
