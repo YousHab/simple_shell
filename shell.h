@@ -9,10 +9,12 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
+#include <errno.h>
+#include <fcntl.h>
 
 #define SEP " \t\n"
 
-extern char **envp;
+extern char **environ;
 
 
 char *readline(void);
@@ -31,7 +33,7 @@ int _strlen(char *s);
 const char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 
-int my_execute(char **command_line, char **av, int index, char **envp);
+int my_execute(char **command_line, char **av);
 void FreeArray(char **array);
 
 

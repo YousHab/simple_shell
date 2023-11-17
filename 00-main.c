@@ -11,11 +11,11 @@
 
 char **envp;
 
-int main(int ac, char **av, char **envp)
+int main(int ac, char **av)
 {
-	char *line;
+	char *line = NULL;
 	char **command_line = NULL;
-	int status = 0, index = 0;
+	int status = 0;
 	(void)ac;
 
 	while (1)
@@ -25,17 +25,17 @@ int main(int ac, char **av, char **envp)
 		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
-			free(line);
 			return (status);
 		}
-		index++;
 		command_line = spliter(line);
 		if (!command_line)
 		{
-			free(line);
 			continue;
 		}
-		status = my_execute(command_line, av, index, envp);
+		printf("%s\n", line);
+		free(line);
+
+		status = my_execute(command_line, av);
 		free(line);
 	}
 }

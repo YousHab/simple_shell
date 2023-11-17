@@ -11,21 +11,28 @@
 char **spliter(char *line)
 {
 	char **tokens = NULL, *token = NULL;
-	char *tmp = NULL;
+	char *temp = NULL;
 	int count = 0, i = 0;
 
 	if (!line)
 	{
 		return (NULL);
 	}
-	tmp = my_strdup(line);
-	token = strtok(tmp, SEP);
+	temp = my_strdup(line);
+	token = strtok(temp, SEP);
+	if (!token)
+	{
+		free(temp);
+		temp = NULL;
+		free(line);
+		line = NULL;
+	}
 	while (token)
 	{
 		count++;
 		token = strtok(NULL, SEP);
 	}
-	free(tmp);
+	free(temp), temp = NULL;
 
 	tokens = malloc(sizeof(char *) * (count + 1));
 	if (!tokens)
@@ -36,11 +43,11 @@ char **spliter(char *line)
 	token = strtok(line, SEP);
 	while (token)
 	{
-		tokens[i] = token;
+		tokens[i++] = token;
 		token = strtok(NULL, SEP);
-		i++;
 	}
 	free(line);
 	line = NULL;
+	tokens[i] = NULL;
 	return (tokens);
 }

@@ -10,36 +10,25 @@
  * Return: the status.
  */
 
-int my_execute(char **command_line, char **av, int index, char **envp)
+int my_execute(char **command_line, char **av)
 {
 	int status;
-	char *cmd;
-	pid_t child;
+	pid_t child_process;
 
-	cmd = get_path(command_line[0]);
-	if (!cmd)
+	child_process = fork();
+	if (child_process == 0)
 	{
-		display_error(av[0], command_line[0], index);
-		FreeArray(command_line);
-		return (127);
-	}
-	child = fork();
-	if (child == 0)
-	{
-		if (execve(command_line[0], command_line, envp) == -1)
+		if (execve(command_line[0], command_line, environ) == -1)
 		{
-			free(cmd);
-			cmd = NULL;
+			perror(av[0]);
 			FreeArray(command_line);
-			exit(127);
+			exit(0);
 		}
 	}
 	else
 	{
-		waitpid(child, &status, 0);
+		waitpid(child_process, &status, 0);
 		FreeArray(command_line);
-		free(cmd);
-		cmd = NULL;
 	}
 	return (WEXITSTATUS(status));
 }
