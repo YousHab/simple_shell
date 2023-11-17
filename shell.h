@@ -33,7 +33,7 @@ int _strlen(char *s);
 const char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 
-int my_execute(char **command_line, char **av);
+int my_execute(char **command_line, char **av, int index);
 void FreeArray(char **array);
 
 

@@ -15,6 +15,7 @@ int main(int ac, char **av)
 	char *line = NULL;
 	char **command_line = NULL;
 	int status = 0;
+	int index = 0;
 	(void)ac;
 
 	while (1)
@@ -26,11 +27,12 @@ int main(int ac, char **av)
 				write(STDOUT_FILENO, "\n", 1);
 			return (status);
 		}
+		index++;
 		command_line = spliter(line);
 		if (!command_line)
 		{
 			continue;
 		}
-		status = my_execute(command_line, av);
+		status = my_execute(command_line, av, index);
 	}
 }
