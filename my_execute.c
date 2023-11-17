@@ -5,7 +5,6 @@
  *
  * @command_line: the command
  * @av: arguments.
- * @index: the index.
  *
  * Return: the status.
  */
